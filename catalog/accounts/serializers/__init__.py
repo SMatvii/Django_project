@@ -1,3 +1,3 @@
-from .user_serializer import UserSerializer
+from .user_serializers import UserSerializer
 from .profile_serializer import ProfileSerializer
-from .forms_serializers import RegisterFormSerializer, CaptchaFieldSerializer
+from .forms_serializers import CaptchaFieldSerializer, RegisterFormSerializer

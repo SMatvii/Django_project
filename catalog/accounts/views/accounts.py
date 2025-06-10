@@ -1,18 +1,24 @@
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse
+from django.core.mail import send_mail
+from django.contrib import messages
+from django.http import HttpResponseBadRequest
+from django.contrib.auth.models import User
+from django.conf import settings
 from rest_framework.viewsets import ViewSet
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from drf_spectacular.utils import extend_schema, extend_schema_view
-from drf_spectacular.types import OpenApiTypes
-from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.models import User
-from django.conf import settings
+from drf_spectacular.utils import extend_schema, OpenApiTypes
 
-from ..forms import RegisterForm, LoginForm, ProfileUpdateForm
-from ..serializers import ProfileSerializer, UserSerializer, RegisterFormSerializer
-from utils.email import send_confirmation_email
+from ..forms import RegisterForm, ProfileUpdateForm, RegisterFormNoCaptcha, LoginForm
+from ..models import Profile
+from utils.email import send_email_confirm
 from products.models import Cart, Product, CartItem
-
+from utils.email import send_email_confirm
+from ..serializers import ProfileSerializer, UserSerializer, RegisterFormSerializer
 
 class AccountViewSet(ViewSet):
     permission_classes = [AllowAny]
