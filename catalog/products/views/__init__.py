@@ -1,2 +1,2 @@
 from .product import ProductViewSet
-from .category import CaregoryViewSet
+from .category import CategoryViewSet
