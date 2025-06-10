@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+<br><br><br>
+<br><br><br>
+<br><br><br>
+    <h2>Profile</h2>
+    <ul>
+        <img src=""
+        <li>Username: {{ request.user.username }}</li>
+        <li>Email: {{ request.user.email }}</li>
+    </ul>
+    <a href="{% url 'accounts:password_change' %}" class="btn btn-primary">Change Password</a>
+{% endblock %}
